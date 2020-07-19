@@ -1,0 +1,29 @@
+{
+  "name": "trivia-bot",
+  "version": "0.0.1",
+  "description": "If you want some fun trivia on Slack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayhjha/trivia-bot.git"
+  },
+  "author": "Jay Himanshu Jha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jayhjha/trivia-bot/issues"
+  },
+  "homepage": "https://github.com/jayhjha/trivia-bot#readme",
+  "dependencies": {
+    "@slack/bolt": "^2.1.1",
+    "config": "^3.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4"
+  }
+}
