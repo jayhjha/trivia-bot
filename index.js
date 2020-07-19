@@ -4,8 +4,9 @@ const {
   SIGNING_SECRET: signingSecret,
 } = require('config');
 
-const trivia = require('./trivia');
-const eventHandler = require('./eventHandler');
+const trivia = require('./lib/trivia');
+const eventHandler = require('./lib/eventHandler');
+const logger = require('./logger');
 
 const app = new App({
   token,
@@ -14,8 +15,8 @@ const app = new App({
 
 (async () => {
   await eventHandler.handleMessage({ app });
-  await trivia.scheduleTrivia({ app });
+  await trivia.startTrivia({ app });
   await app.start(process.env.PORT || 3000);
 
-  console.log('⚡️ Bolt app is running!');
+  logger.info('⚡️ Bolt app is running!');
 })();

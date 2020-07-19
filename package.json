@@ -4,6 +4,8 @@
   "description": "If you want some fun trivia on Slack",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js | bunyan",
+    "start:dev": "nodemon index.js | bunyan",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +20,7 @@
   "homepage": "https://github.com/jayhjha/trivia-bot#readme",
   "dependencies": {
     "@slack/bolt": "^2.1.1",
+    "bunyan": "^1.8.14",
     "config": "^3.3.1"
   },
   "devDependencies": {
