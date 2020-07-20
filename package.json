@@ -20,6 +20,7 @@
   "homepage": "https://github.com/jayhjha/trivia-bot#readme",
   "dependencies": {
     "@slack/bolt": "^2.1.1",
+    "aws-sdk": "^2.715.0",
     "bunyan": "^1.8.14",
     "config": "^3.3.1"
   },
