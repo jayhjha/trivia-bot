@@ -3,12 +3,13 @@ const knexSettings = require('../knexfile');
 
 const knexInstance = Knex(knexSettings)('workspace');
 
-const getWorkspaceById = ({ id }) => knexInstance()
+const getWorkspaceById = ({ id }) => knexInstance
   .select(
     'id',
     'workspace_id as workspaceId',
   )
-  .where({ workspace_id: id });
+  .where({ workspace_id: id })
+  .first();
 
 module.exports = {
   getWorkspaceById,
