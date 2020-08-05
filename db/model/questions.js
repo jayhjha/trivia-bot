@@ -18,12 +18,12 @@ const saveQuestion = ({
   })
   .returning('id');
 
-const getRandomQuestions = ({ numOfQuestions }) => knexInstance
-  .select()
+const getRandomNewQuestions = ({ numOfQuestions }) => knexInstance
+  .innerJoin('completed_questions', 'questions.id', '!=', 'completed_questions.question_id')
   .orderBy(knex.raw('RANDOM()'))
   .limit(numOfQuestions);
 
 module.exports = {
   saveQuestion,
-  getRandomQuestions,
+  getRandomNewQuestions,
 };
