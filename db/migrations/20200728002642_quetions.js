@@ -5,6 +5,7 @@ exports.up = (knex) => knex.schema
     table.increments('id');
     table.string('question').notNullable();
     table.string('answer').notNullable();
+    table.string('image_url');
     table.string('submitted_by');
     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
 

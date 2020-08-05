@@ -1,25 +1,29 @@
 const Knex = require('knex');
 const knexSettings = require('../knexfile');
 
-const knexInstance = Knex(knexSettings)('questions');
+const knex = Knex(knexSettings);
+const knexInstance = knex('questions');
 
-const saveQuestion = ({ question, answer, submittedBy }) => knexInstance
+const saveQuestion = ({
+  question,
+  answer,
+  imageUrl,
+  submittedBy,
+}) => knexInstance
   .insert({
     question,
     answer,
+    image_url: imageUrl,
     submitted_by: submittedBy,
   })
   .returning('id');
 
-const getQuestionsFromIdList = ({ idList }) => knexInstance
-  .select(
-    'question',
-    'answer',
-    'submitted_by as submittedAs',
-  )
-  .whereIn('id', idList);
+const getRandomQuestions = ({ numOfQuestions }) => knexInstance
+  .select()
+  .orderBy(knex.raw('RANDOM()'))
+  .limit(numOfQuestions);
 
 module.exports = {
   saveQuestion,
-  getQuestionsFromIdList,
+  getRandomQuestions,
 };
