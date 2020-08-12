@@ -18,13 +18,14 @@ const saveQuestion = ({
   })
   .returning('id');
 
-const getUniqueRandomQuestions = ({ numOfQuestions, workspaceId }) => knexInstance
-  .select(knex.raw('*, q.id as q_id'))
-  .leftJoin('completed_questions', function() {
-    this.on('q.id', '!=', 'completed_questions.question_id').andOn('completed_questions.workspace_id', '!=', workspaceId);
-  })
-  .orderBy(knex.raw('RANDOM()'))
-  .limit(numOfQuestions);
+const getUniqueRandomQuestions = ({ numOfQuestions, workspaceId }) => knex
+  .raw(`select * from questions q
+        where q.id not in (
+          select question_id from completed_questions
+          where workspace_id = ${workspaceId}
+        )
+        limit ${numOfQuestions};`)
+  .then((resp) => Promise.resolve(resp.rows));
 
 module.exports = {
   saveQuestion,
